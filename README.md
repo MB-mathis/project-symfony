@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Symfony Docker
 
 A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
@@ -49,3 +50,6 @@ Symfony Docker is available under the MIT License.
 ## Credits
 
 Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+=======
+# project-symfony
+>>>>>>> 2450acb9f1b726ae6225ff9a77f15a59b7fb5cb7
