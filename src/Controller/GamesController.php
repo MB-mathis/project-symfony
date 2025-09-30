@@ -8,26 +8,35 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Games;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\GamesInsertType;
+
+
 
 
 
 final class GamesController extends AbstractController
 {
     #[Route('/games', name: 'app_games')]
-        public function createGame(EntityManagerInterface $entityManager): Response
+         public function new(Request $request,EntityManagerInterface $entityManager): Response
+        
     {
+        
         $game = new Games();
-        $game->setName('kirby');
-        $game->setPegi(7);
+        $formG = $this->createForm(GamesInsertType::class, $game);
+        $formG->handleRequest($request);
 
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($game);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        return new Response('Saved new product with id '.$game->getId());
+        if ($formG->isSubmitted() && $formG->isValid()) {
+            $game = $formG->getData();
+            // tell Doctrine you want to (eventually) save the Product (no queries yet)
+            $entityManager->persist($game);
+            // actually executes the queries (i.e. the INSERT query)
+            $entityManager->flush();
+        }
+        return $this->render('games/index.html.twig', [
+            'formG' => $formG->createView(),
+        ]);
+        
     }
-}
 
+}

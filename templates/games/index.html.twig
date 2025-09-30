@@ -9,12 +9,19 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {{ form_start(formG) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(formG) }}
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/app/src/Controller/GamesController.php</code></li>
-        <li>Your template at <code>/app/templates/games/index.html.twig</code></li>
-    </ul>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formG.name) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(formG.pegi) }}
+        </div>
+    </div>
+{{ form_end(formG) }}
 </div>
 {% endblock %}
